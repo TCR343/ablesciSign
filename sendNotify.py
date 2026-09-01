@@ -60,7 +60,7 @@ def pushplus_bot(title, content):
         return
     
     print("PushPlus服务启动")
-    url = 'http://www.pushplus.plus/send'
+    url = 'https://www.pushplus.plus/send'
     data = {
         "token": PUSH_PLUS_TOKEN,
         "title": title,
