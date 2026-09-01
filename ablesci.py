@@ -80,9 +80,6 @@ def load_env_file():
     elif account_lines:
         print(f"警告：存在无键账号行，但 {ENV_ACCOUNTS} 已通过系统或标准键值对设置，忽略无键行")
 
-    if ENV_ACCOUNTS in os.environ:
-        val = os.environ[ENV_ACCOUNTS]
-        print(f"当前 {ENV_ACCOUNTS} 内容预览: {val[:100]}{'...' if len(val) > 100 else ''}")
 
 load_env_file()
 
@@ -396,8 +393,6 @@ def get_accounts():
     if not accounts_env:
         return []
     
-    # 调试输出
-    print(f"原始账号环境变量内容: {repr(accounts_env)}")
     
     accounts = []
     # 支持换行符、分号、逗号分隔
