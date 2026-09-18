@@ -211,6 +211,10 @@ class AbleSciAuto:
             response = self.session.get(login_url, headers=self.headers, timeout=30)
             if response.status_code == 200:
                 soup = BeautifulSoup(response.text, 'html.parser')
+                # 新版登录页使用 meta 标签，兼容旧版隐藏输入框。
+                csrf_meta = soup.find('meta', {'name': 'csrf-token'})
+                if csrf_meta and csrf_meta.get('content'):
+                    return csrf_meta['content']
                 csrf_token = soup.find('input', {'name': '_csrf'})
                 if csrf_token:
                     return csrf_token.get('value', '')
